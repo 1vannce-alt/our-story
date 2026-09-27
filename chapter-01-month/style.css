@@ -270,7 +270,8 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   #intro-screen {
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 3rem;
   }
 
   .greeting {
