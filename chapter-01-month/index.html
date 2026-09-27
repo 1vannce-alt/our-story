@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Monthsary, My Love</title>
+    <!-- Elegant Typography: Serif for headings, Sans-serif for body -->
+    <link rel="icon" href="assets/icon.svg" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Swiper.js: MIT-licensed library used to snap each part of the letter into
+         view as the user scrolls down, section by section. -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Subtle particle effect background -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+    <!-- Background Music -->
+    <audio id="bgm" loop preload="metadata">
+      <source
+        src="assets/Taylor Swift - I Knew It, I Knew You (from Toy Story 5).mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <!-- Intro Scene to trigger audio and start scrolling -->
+    <div id="intro-screen">
+      <h1 class="greeting">Happy Monthsary, My Love</h1>
+      <button class="sleek-btn" id="startBtn" type="button">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        <span>Open for You</span>
+      </button>
+    </div>
+
+    <button
+      class="music-toggle"
+      id="musicToggle"
+      type="button"
+      aria-label="Turn music off"
+      aria-pressed="true"
+      hidden
+    >
+      Music: On
+    </button>
+
+    <!-- Story Engine container: each part of the letter is its own slide that
+         snaps into place as the user scrolls down, powered by Swiper.js -->
+    <main id="story-container">
+      <div class="swiper" id="storySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide intro-slide">
+            <p class="story-line">Happy monthsary, my love.</p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              I want to take a moment today to remind you how much you truly
+              mean to me. Life can get busy and days go by so fast, but I always
+              want to make sure you know just how special you are. Every single
+              day with you is a gift, and reaching another month together makes
+              me realize just how lucky I am to have you by my side.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              Looking back at our memories, one day that always stays in my
+              heart is your birthday on August 28. We went out with our friends,
+              both my classmates and yours, starting from Starbuks in Cebu,
+              planning to hike all the way through Spartan Trail. Even though
+              the rain poured and we didn't get to finish the Spartan route,
+              that day became so unforgettable to me.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              After we arrived at Starbuks, we ate dinner. Then I asked you,
+              “Magpa-pic ta adto dapit sa signage sa unahan?” Kay sige man ka ug
+              ingon nga mag-picture ta didto, so niadto ta.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              Funny kaayo kay naglibog pa ko unsaon nako pagsulti sa imoha,
+              gyud—HAHAHAHA. Funny kaayo ta pag panguyab, mura ra tag wala, noh?
+              Char. But I am truly grateful for that day, for real. The view was
+              romantic, and simple ra kaayo akong pag panguyab nimo, babe. I
+              hope you appreciated it gyud. After that, we set out for Spartan.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              We were all so exhausted, drenched in sweat, and tired from the
+              climb, but the entire time, having you beside me gave me all the
+              strength I needed. Seeing you there kept me going, and all I
+              wanted was to look out for you, take care of you, and make sure
+              you were safe and okay every step of the trail. The muddy paths,
+              the heavy rain, and the tired legs didn't matter at all because I
+              was sharing it with you. That hike showed me that as long as we
+              are together, even when plans change and the trail gets tough, we
+              can get through anything with a smile.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              Thank you for being my partner, my peace, and my favorite person.
+              You make every simple moment feel like home, and every hard day so
+              much easier just by being there.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              I know no journey is completely smooth, but my choice will always
+              be you. I promise to keep holding your hand, caring for you, and
+              walking beside you no matter what weather or trail comes our way.
+            </p>
+          </div>
+
+          <div class="swiper-slide">
+            <p class="story-line">
+              Happy monthsary again, my love. I love you so much, more than
+              words can say, always and forever.
+            </p>
+          </div>
+
+          <div class="swiper-slide final-slide">
+            <img
+              src="assets/us.jpg"
+              alt="Ivan and Clabelle"
+              class="story-image"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="story-line signature">Always yours,<br />Ivan</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
