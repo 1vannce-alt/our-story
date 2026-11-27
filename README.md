@@ -11,7 +11,8 @@ our-story/
 ├── index.html          Landing page with Open and Copy link buttons for every chapter
 ├── monthsary/
 │   ├── chapter-01/     Website: index.html, script.js, style.css, assets/
-│   └── chapter-02/     README.md only. This chapter is an external DigiBouquet link.
+│   ├── chapter-02/     README.md only. This chapter is an external DigiBouquet link.
+│   └── chapter-03/     Website: scroll story with games and sound effects made in code
 ├── anniversary/        Empty for now
 ├── .env.example        Names of the local secrets
 └── .gitignore          Keeps .env out of git
