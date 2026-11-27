@@ -124,6 +124,15 @@
       .button-primary:focus-visible {
         color: var(--color-text-dark);
       }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
     </style>
   </head>
   <body>
@@ -131,6 +140,7 @@
       <h1>Our Story</h1>
       <p class="subtitle">One chapter at a time</p>
       <div id="sections"></div>
+      <p id="status" class="visually-hidden" aria-live="polite"></p>
     </main>
 
     <script>
@@ -148,20 +158,21 @@
       // Sections only show when they have at least one chapter.
       const sectionOrder = ["Monthsary", "Anniversary"];
       const container = document.getElementById("sections");
+      const status = document.getElementById("status");
 
       function fullUrl(url) {
         return new URL(url, document.baseURI).href;
       }
 
-      async function copyLink(button, url) {
-        const label = button.textContent;
+      async function copyLink(button, url, title) {
         try {
           await navigator.clipboard.writeText(url);
           button.textContent = "Copied!";
+          status.textContent = "Copied link to " + title;
         } catch {
           window.prompt("Copy this link:", url);
         }
-        setTimeout(() => (button.textContent = label), 1500);
+        setTimeout(() => (button.textContent = "Copy link"), 1500);
       }
 
       for (const name of sectionOrder) {
@@ -190,12 +201,14 @@
           open.className = "button button-primary";
           open.href = link;
           open.textContent = "Open";
+          open.setAttribute("aria-label", "Open " + chapter.title);
 
           const copy = document.createElement("button");
           copy.type = "button";
           copy.className = "button";
           copy.textContent = "Copy link";
-          copy.addEventListener("click", () => copyLink(copy, link));
+          copy.setAttribute("aria-label", "Copy link to " + chapter.title);
+          copy.addEventListener("click", () => copyLink(copy, link, chapter.title));
 
           actions.append(open, copy);
           item.append(title, actions);
