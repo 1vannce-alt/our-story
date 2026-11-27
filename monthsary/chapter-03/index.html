@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1b2140" />
+    <title>Happy 3rd Monthsary, Babe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="locked">
+    <div class="sky" id="sky" aria-hidden="true"></div>
+    <div class="stars" id="stars" aria-hidden="true"></div>
+
+    <button class="mute" id="muteBtn" type="button" aria-pressed="false" hidden>Sound: On</button>
+
+    <!-- 1. Open gate -->
+    <div class="gate" id="gate">
+      <div class="lamp" aria-hidden="true">
+        <span class="lamp-head"></span>
+        <span class="lamp-glow"></span>
+      </div>
+      <h1 class="gate-title">Happy 3rd monthsary, babe.</h1>
+      <button class="btn btn-big" id="openBtn" type="button">Open (sound on)</button>
+    </div>
+
+    <main class="story" id="story">
+      <!-- 2. The counter -->
+      <section class="scene" data-scene="counter">
+        <div class="paper">
+          <p class="label">Days since I last saw you:</p>
+          <p class="counter" id="counter" aria-live="polite">0</p>
+          <p class="line glitch" id="glitchLine">Ay wait. Murag 100 years na diay.</p>
+          <p class="line later" id="counterAfter">
+            The last time was that face-to-face quiz night in October. Since then, puro screen nalang ta.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Finals season -->
+      <section class="scene" data-scene="finals">
+        <div class="desk" aria-hidden="true">
+          <span class="book" style="--c: #e8a0a0; --w: 78%">REVIEWER</span>
+          <span class="book" style="--c: #a7c4e8; --w: 70%">DEADLINE</span>
+          <span class="book" style="--c: #f2d27a; --w: 84%">PROJECT</span>
+          <span class="book" style="--c: #b5d8b0; --w: 66%">QUIZ</span>
+          <span class="book" style="--c: #d1b8e8; --w: 74%">FINALS</span>
+        </div>
+        <div class="paper">
+          <p class="line reveal">
+            This month, <span class="hl">finals</span> ang naka-schedule sa ato, dili dates.
+          </p>
+          <p class="line reveal">Reviewers, deadlines, projects. Ikaw sa imong side, ako sa akoa.</p>
+          <p class="line reveal">
+            Pareho ta busy karon, babe. Usahay late ang reply. Dili kay wala tay time sa usag-usa. Busy lang jud ta
+            pareho.
+          </p>
+          <p class="line reveal">
+            Pero okay ra. Naa pa tay daghang next time, ug daghan pa'y adlaw nga mobawi ko nimo.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. I miss you -->
+      <section class="scene" data-scene="miss">
+        <div class="far" aria-hidden="true">
+          <span class="buddy buddy-me"><span class="eyes"></span></span>
+          <span class="far-line"></span>
+          <span class="buddy buddy-you"><span class="eyes"></span></span>
+        </div>
+        <div class="paper">
+          <p class="line reveal big">Pero ang tinuod? I miss you, babe. <span class="hl hl-pink">Like, a lot.</span></p>
+
+          <div class="game reveal">
+            <label class="game-q" for="missRange">How much do you miss me?</label>
+            <div class="range-row">
+              <input type="range" id="missRange" min="1" max="10" value="1" />
+              <output class="range-out" id="missOut" for="missRange">1</output>
+            </div>
+            <p class="range-hint" id="missHint">1 to 10.</p>
+            <p class="line answer" id="missAnswer">Okay same, pero mas daku akoa.</p>
+          </div>
+
+          <div class="game reveal">
+            <p class="game-q">Who misses who more?</p>
+            <div class="dodge" id="dodgeArea">
+              <button class="btn" id="meBtn" type="button">Me</button>
+              <button class="btn btn-ghost" id="youBtn" type="button">You</button>
+            </div>
+            <p class="line answer" id="whoAnswer">Wrong answer, babe. Ako.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Memory lane -->
+      <section class="scene" data-scene="lane">
+        <figure class="polaroid reveal" style="--tilt: -3deg">
+          <img src="assets/tree.jpg" alt="Us under a big tree" width="900" height="1200" loading="lazy" />
+          <figcaption>us, before finals</figcaption>
+        </figure>
+        <div class="paper">
+          <p class="line reveal">So while we're stuck sa finals, mao ni ang akong ginamiss:</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="memory">
+        <div class="paper">
+          <p class="tag reveal">Seeing each other at school.</p>
+          <p class="line reveal">Bisan kadali ra, makita lang tika sa school, buo na akong adlaw.</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="clock">
+        <svg class="clock" id="clock" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="44" class="clock-face" />
+          <g class="clock-marks">
+            <line x1="50" y1="10" x2="50" y2="16" />
+            <line x1="90" y1="50" x2="84" y2="50" />
+            <line x1="50" y1="90" x2="50" y2="84" />
+            <line x1="10" y1="50" x2="16" y2="50" />
+          </g>
+          <line x1="50" y1="50" x2="50" y2="30" class="hand hand-hour" id="hourHand" />
+          <line x1="50" y1="50" x2="50" y2="18" class="hand hand-minute" id="minuteHand" />
+          <circle cx="50" cy="50" r="3" class="clock-pin" />
+        </svg>
+        <div class="paper">
+          <p class="tag reveal">Our in-between.</p>
+          <p class="line reveal">Conflict ang atong schedule. Ikaw day class, ako night class.</p>
+          <p class="line reveal">Pag-abot nako sa school, pahuman na imong klase, ug wala pa nag-start akoa.</p>
+          <p class="line reveal">Kadali ra kaayo ang time nato. Kamusta, I miss you, then goodbye na dayon.</p>
+          <p class="line reveal">Ingnan tika nga amping sa pag-uli, unya saka ko sa akong klase.</p>
+          <p class="line reveal">Pero kana nga kadali ra, mao na akong baon sa tibuok night class.</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="memory">
+        <div class="paper">
+          <p class="tag reveal">Lunch together.</p>
+          <p class="line reveal">
+            It never mattered where we ate or what we ordered, as long as you were across the table.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="memory">
+        <div class="snacks reveal" aria-hidden="true">🍦 🥟 🍢 🥭</div>
+        <div class="paper">
+          <p class="tag reveal">Food outside.</p>
+          <p class="line reveal">
+            Ice cream, siomai, ug kung unsa pa nga street food ang makit-an nato sa gawas. Ug ang
+            <span class="hl">mangga</span> during your period cravings. Ako jud na mopalit, ayaw na ug ingon nga
+            dili ka gusto.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="matcha">
+        <figure class="polaroid reveal" style="--tilt: 2.5deg">
+          <img src="assets/matcha.jpg" alt="Mirror selfie of us at a cafe" width="900" height="1195" loading="lazy" />
+          <figcaption>matcha date</figcaption>
+        </figure>
+        <div class="paper">
+          <p class="tag reveal">Don Mac.</p>
+          <p class="line reveal">Matcha for you, as always.</p>
+          <div class="game reveal">
+            <button class="cup" id="cupBtn" type="button" aria-describedby="cupHint">
+              <span class="cup-lid" aria-hidden="true"></span>
+              <span class="cup-body" aria-hidden="true">
+                <span class="cup-fill" id="cupFill"></span>
+                <span class="pearls" id="pearls"></span>
+              </span>
+              <span class="visually-hidden">Fill the matcha</span>
+            </button>
+            <p class="range-hint" id="cupHint">Tap to fill your matcha.</p>
+            <p class="line answer" id="cupAnswer">One matcha, on me, next time we see each other.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="jeep">
+        <div class="road" aria-hidden="true">
+          <svg class="jeep" id="jeep" viewBox="0 0 120 60">
+            <rect x="8" y="14" width="96" height="30" rx="6" class="jeep-body" />
+            <rect x="14" y="8" width="84" height="8" rx="3" class="jeep-roof" />
+            <rect x="18" y="20" width="16" height="12" rx="2" class="jeep-window" />
+            <rect x="38" y="20" width="16" height="12" rx="2" class="jeep-window" />
+            <rect x="58" y="20" width="16" height="12" rx="2" class="jeep-window" />
+            <rect x="80" y="20" width="18" height="12" rx="2" class="jeep-window" />
+            <rect x="8" y="34" width="96" height="3" class="jeep-stripe" />
+            <circle cx="28" cy="46" r="8" class="jeep-wheel" />
+            <circle cx="88" cy="46" r="8" class="jeep-wheel" />
+          </svg>
+        </div>
+        <div class="paper">
+          <p class="tag reveal">Walking you to the jeep.</p>
+          <p class="line reveal">
+            Ang paghatod nako nimo gawas sa school hangtod makasakay ka. Gabantay ko hangtod molarga ang jeep.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. The promise -->
+      <section class="scene" data-scene="promise">
+        <div class="sun" aria-hidden="true"></div>
+        <div class="paper">
+          <p class="line reveal">
+            I know busy pa ta hangtod next month. Okay ra, babe. Focus sa finals, kaya nato ni. Proud kaayo ko nimo.
+          </p>
+          <p class="line reveal">
+            And when this is all over, we're getting it all back. School, lunch, food, mango, matcha.
+            <span class="hl hl-pink">All of it.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. Ending -->
+      <section class="scene scene-end" data-scene="end">
+        <figure class="polaroid reveal" style="--tilt: -2deg">
+          <img src="assets/sea.jpg" alt="Us by the sea" width="900" height="1200" loading="lazy" />
+          <figcaption>us, next time</figcaption>
+        </figure>
+        <div class="paper">
+          <p class="line reveal big">Happy 3rd monthsary, babe. I miss you, and I love you so much.</p>
+          <div class="game reveal">
+            <button class="hug" id="hugBtn" type="button">
+              <span class="hug-meter" id="hugMeter" aria-hidden="true"></span>
+              <span class="hug-label">Hold to hug me</span>
+            </button>
+            <div class="coupon" id="coupon" aria-live="polite">
+              <p class="coupon-title">Hug coupon.</p>
+              <p class="coupon-text">Valid the next time we see each other. No expiry.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="hearts" id="hearts" aria-hidden="true"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
