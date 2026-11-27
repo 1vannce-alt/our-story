@@ -16,6 +16,7 @@ function startAudio() {
 
 function tone({ freq = 440, to = null, dur = 0.15, type = "sine", vol = 0.2, delay = 0 }) {
   if (!audio || muted) return;
+  if (audio.state !== "running") audio.resume();
   const t = audio.currentTime + delay;
   const osc = audio.createOscillator();
   const gain = audio.createGain();
@@ -32,6 +33,7 @@ function tone({ freq = 440, to = null, dur = 0.15, type = "sine", vol = 0.2, del
 
 function noise({ dur = 0.4, from = 400, to = 2500, vol = 0.2, q = 1, delay = 0 }) {
   if (!audio || muted) return;
+  if (audio.state !== "running") audio.resume();
   const t = audio.currentTime + delay;
   const length = Math.floor(audio.sampleRate * dur);
   const buffer = audio.createBuffer(1, length, audio.sampleRate);
@@ -91,6 +93,7 @@ $("openBtn").addEventListener("click", () => {
   document.body.classList.remove("locked");
   muteBtn.hidden = false;
   window.scrollTo(0, 0);
+  setTimeout(watchScenes, 300);
 });
 
 muteBtn.addEventListener("click", () => {
@@ -179,9 +182,12 @@ const sceneObserver = new IntersectionObserver(
   },
   { threshold: 0.5 },
 );
-document.querySelectorAll(".scene").forEach((el) => {
-  if (sceneActions[el.dataset.scene]) sceneObserver.observe(el);
-});
+// Called after the gate opens, so the first scene doesn't play behind the gate.
+function watchScenes() {
+  document.querySelectorAll(".scene").forEach((el) => {
+    if (sceneActions[el.dataset.scene]) sceneObserver.observe(el);
+  });
+}
 
 /* ---------- 2. Counter ---------- */
 function runCounter() {
@@ -253,6 +259,9 @@ missRange.addEventListener("input", () => {
     missRange.parentElement.classList.add("stretch");
     sfx.boing();
     buzz(40);
+    // End the current drag so reaching 100 takes a fresh drag.
+    missRange.disabled = true;
+    setTimeout(() => (missRange.disabled = false), 600);
   } else if (missStage === 1 && value >= 100) {
     missStage = 2;
     missOut.textContent = "∞";
@@ -296,7 +305,10 @@ youBtn.addEventListener("pointerdown", dodge);
 youBtn.addEventListener("pointerenter", (event) => {
   if (event.pointerType === "mouse") dodge();
 });
-youBtn.addEventListener("click", dodge);
+// Keyboard only: a tap already dodged on pointerdown.
+youBtn.addEventListener("click", (event) => {
+  if (event.detail === 0) dodge(event);
+});
 
 meBtn.addEventListener("click", () => {
   sfx.boing();
@@ -399,6 +411,10 @@ hugBtn.addEventListener("pointerup", stopHug);
 hugBtn.addEventListener("pointerleave", stopHug);
 hugBtn.addEventListener("pointercancel", stopHug);
 hugBtn.addEventListener("contextmenu", (event) => event.preventDefault());
+// Screen readers send a single click with no hold, so let that finish the hug.
+hugBtn.addEventListener("click", (event) => {
+  if (event.detail === 0 && !hugged) finishHug();
+});
 hugBtn.addEventListener("keydown", (event) => {
   if ((event.key === " " || event.key === "Enter") && !event.repeat) startHug(event);
 });
